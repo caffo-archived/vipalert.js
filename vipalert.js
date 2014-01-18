@@ -15,6 +15,10 @@ var other_labels = [
   "@sanelater"
 ]
 
+var other_labels = [
+  "@sanelater"
+]
+
 var vip_label        = GmailApp.getUserLabelByName("VIP");
 var total_processed  = 0;
 
@@ -44,8 +48,10 @@ function processThreads(threads){
      var labels = threads[i].getLabels();
      if (notLabeledAsVIP(labels) && threads[i].isUnread()) {
        var messages = threads[i].getMessages();
-       for (var j = 0; j < messages.length; j++) {
-         if (messages[j].isUnread()){ processMessage(threads[i], messages[j]) }
+       if (messages !== null){
+         for (var j = 0; j < messages.length; j++) {
+           if (messages[j].isUnread()){ processMessage(threads[i], messages[j]) }
+       }
        }
      }
    }
@@ -68,9 +74,9 @@ function processVIP(thread, message, from){
 
 function processMessage(thread, message){
   var from = parseFrom(message.getFrom());
-//  Logger.log("processing:" + from);
+   Logger.log("processing:" + from);
   if (vip_list.indexOf(from) !=  -1) {
-    processVIP(thread, messages, from);
+    processVIP(thread, message, from);
  }
 }
 
