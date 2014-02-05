@@ -15,10 +15,6 @@ var other_labels = [
   "@sanelater"
 ]
 
-var other_labels = [
-  "@sanelater"
-]
-
 var vip_label        = GmailApp.getUserLabelByName("VIP");
 var total_processed  = 0;
 
